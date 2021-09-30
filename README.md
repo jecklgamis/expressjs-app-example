@@ -1,6 +1,6 @@
 # expressjs-app-template
 
-This is an ExpressJS app template.
+This is an ExpressJS app template
 
 What's In The Box?
 
@@ -12,10 +12,9 @@ What's In The Box?
 * Build info endpoint ( /build-info)
 * Observability: Statsd and Prometheus metrics
 
-Clone repo: `git clone git@github.com:jecklgamis/expressjs-app-template.git`
-Run Docker image:  `docker run jecklgamis/expressjs-app-template`
+Run Docker image:  `docker run jecklgamis/expressjs-app-template:latest`
 
-This is a **Github Template** repo. You can create a copy of this project from a clean slate. Simply click
+This is a **Github Template** repo. You can create a copy of this repo from a clean slate. Simply click
 <kbd>Use this template</kbd> button.
 
 Have fun and hope you find this useful!
@@ -37,7 +36,7 @@ Build Docker image:
 make all
 ```
 
-## Running Locally
+## Running
 
 Run Docker image:
 
@@ -47,15 +46,24 @@ make up
 
 ```
 
-Run app directly with auto-reloading
+Run app in development mode
 
 ```
+make run-app-dev-mode
+```
 
-./run-app-dev-mode.sh
+## Deploying To Kubernetes
 
+Assumptions:
+
+* You have access to a Kubernetes cluster
+* You have access to Docker Hub
+
+```
+make deploy-to-k8s
 ```
 
 ## Contributing
 
-Found an issue or something needing improvement, please raise it in Github. Thanks!
+Found an issue or something needing improvement? Please raise it in Github. Thanks!
 

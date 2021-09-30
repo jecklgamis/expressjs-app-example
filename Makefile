@@ -1,4 +1,4 @@
-IMAGE_NAME:=expressjs-app-template
+IMAGE_NAME:=jecklgamis/expressjs-app-template
 IMAGE_TAG:=$(shell git rev-parse HEAD)
 
 default:
@@ -9,7 +9,7 @@ dist:
 	./generate-ssl-certs.sh
 	./generate-build-info.sh
 image:
-	docker build -t $(IMAGE_NAME):$(IMAGE_TAG) .
+	docker build -t $(IMAGE_NAME):$(IMAGE_TAG) -t $(IMAGE_NAME):latest .
 run:
 	docker run -p 8080:8080 -p 8443:8443 $(IMAGE_NAME):$(IMAGE_TAG)
 run-bash:
