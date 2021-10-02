@@ -6,6 +6,7 @@ const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
 const buildInfoRouter = require('./routes/build_info_router.js');
+const apiRouter = require('./routes/api.js');
 
 const fs = require('fs');
 const privateKey = fs.readFileSync('server.key', 'utf8');
