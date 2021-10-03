@@ -6,10 +6,9 @@ default:
 	@echo "make install-deps - install app dependencies"
 	@echo "make up - build and run Docker image"
 	@echo "make all - build Docker image"
-	@echo "make run - run Docker image"
-	@echo "make dist - generate SSL certs, build info file"
 	@echo "make run-app-dev-mode - run app directly in debug mode mode (auto reloads)"
-	@echo "make deploy-to-k8s - deploys to a Kubernetes cluster"
+	@echo "make deploy-to-k8s - create Kubernetes deployment"
+	@echo "make delete-from-k8s - delete Kubernetes deployment"
 	@echo "See Makefile for other useful targets"
 
 all: tests int-tests dist image
