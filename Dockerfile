@@ -16,7 +16,7 @@ ADD public public
 ADD routes routes
 ADD views views
 COPY app.js .
-COPY build_info.js .
+COPY build_info_data.js .
 COPY server.crt .
 COPY server.key .
 

@@ -3,15 +3,16 @@ IMAGE_TAG:=$(shell git rev-parse HEAD)
 
 default:
 	@echo "Makefile targets:"
-	@echo "make install-deps - install NPM dependencies"
+	@echo "make install-deps - install app dependencies"
 	@echo "make up - build and run Docker image"
 	@echo "make all - build Docker image"
 	@echo "make run - run Docker image"
+	@echo "make dist - generate SSL certs, build info file"
 	@echo "make run-app-dev-mode - run app directly in debug mode mode (auto reloads)"
 	@echo "make deploy-to-k8s - deploys to a Kubernetes cluster"
 	@echo "See Makefile for other useful targets"
 
-all: clean tests dist image
+all: tests int-tests dist image
 up: all run
 dist:
 	@./generate-ssl-certs.sh
@@ -27,14 +28,14 @@ run-bash:
 login:
 	docker exec -it `docker ps | grep $(IMAGE_NAME) | awk '{print $$1}'` /bin/bash
 tests:
-	jest
+	mocha --exit test/unit
+int-tests: dist
+	mocha --exit test/integration
 clean:
 	@rm -f server.crt server.key build_info.js
 install-deps:
 	npm install
-update-deps:
-	npm install -g npm-check-updates
-	npm update --save
+	npm install -g nodemon mocha
 push:
 	 docker push $(IMAGE_NAME):$(IMAGE_TAG)
 	 docker push $(IMAGE_NAME):latest

@@ -10,8 +10,9 @@ What's In The Box?
   from [Express application generator](https://expressjs.com/en/starter/generator.html)
 * Alpine [Docker](https://docker.io) Image
 * HTTP and HTTPS listeners (uses self-signed certs)
-* Example test using [Jest](https://jestjs.io/)
-* Exposes /buildInfo and /api endpoints
+* Example integration tests using [Mocha](https://mochajs.org/) and friends
+* /build-info endpoint (Returns Git branch, version, and build time info)
+* /probe/ready, /probe/live endpoints for Kubernetes deployment
 * Statsd metrics
 * [Kubernetes](https://kubernetes.io/) deployment file
 
@@ -59,17 +60,27 @@ make run-app-dev-mode
 
 ## Testing
 
-This template uses Jest test framework.
+This template uses Mocha test framework along with other libraries (chai, chai-http, and supertest)
 
-Run the non-Dockerized app in debug mode.
+Run unit tests:
+
+Run unit tests (all tests under `test/unit`):
 
 ```
-make run-app-dev-mode
+make tests
 ```
 
-## Deploying To Kubernetes
+Run integration tests (all tests under `test/integration`):
 
-Assumptions:
+```
+make int-tests
+```
+
+## Deploying
+
+### Kubernetes
+
+This assumes:
 
 * You have access to a Kubernetes cluster (i.e. a valid $HOME/.kube/config)
 * You have access to Docker Hub
@@ -77,7 +88,10 @@ Assumptions:
 ```
 make deploy-to-k8s
 ```
-This target 
+
+This target
+
+* Pushes Docker image Docker Hub
 * Creates `deployment-<version>.yml` in `deployment/k8s`
 * Runs `kubectl apply -f deployment/k8s/deployment-<version>.yml`
 

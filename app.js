@@ -5,8 +5,10 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const indexRouter = require('./routes/index');
-const buildInfoRouter = require('./routes/build_info_router.js');
+const buildInfoRouter = require('./routes/build_info.js');
 const apiRouter = require('./routes/api.js');
+const liveProbeRouter = require('./routes/live_probe.js');
+const readyProbeRouter = require('./routes/ready_probe.js');
 
 const fs = require('fs');
 const privateKey = fs.readFileSync('server.key', 'utf8');
@@ -25,6 +27,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/build-info', buildInfoRouter);
+app.use('/probe/live', liveProbeRouter);
+app.use('/probe/ready', readyProbeRouter);
+app.use('/api', apiRouter);
 
 app.use((req, res, next) => {
     next(createError(404));
@@ -57,5 +62,6 @@ httpsServer.listen(8443);
 httpServer.on('listening', () => {
     printServerIsUp(httpsServer)
 });
+
 
 module.exports = app;
