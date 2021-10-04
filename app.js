@@ -39,10 +39,8 @@ app.use('/api', apiRouter);
 
 
 app.use((req, res, next) => {
-    console.log(`Creating 404 on ${req.originalUrl}`)
     next(createError(404));
 });
-
 
 app.use((err, req, res, next) => {
     console.log("env = " + req.app.get('env'))

@@ -1,7 +1,7 @@
-FROM alpine:3.14
+FROM node:16-alpine3.14
 MAINTAINER Jerrico Gamis <jecklamis@gmail.com>
 
-RUN apk update && apk add --no-cache bash curl dumb-init nodejs npm
+RUN apk update && apk add --no-cache bash curl dumb-init
 
 ENV APP_HOME /app
 
@@ -13,6 +13,7 @@ RUN npm install -production
 ADD public public
 ADD routes routes
 ADD views views
+ADD middleware middleware
 COPY app.js .
 COPY build_info_data.js .
 COPY server.crt .
