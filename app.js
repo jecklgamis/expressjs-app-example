@@ -25,22 +25,33 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+const timingMetrics = require("./middleware/statsd/timing")
+app.use(timingMetrics)
+
+const statusCodeMetrics = require("./middleware/statsd/status_code")
+app.use(statusCodeMetrics)
+
 app.use('/', indexRouter);
 app.use('/build-info', buildInfoRouter);
 app.use('/probe/live', liveProbeRouter);
 app.use('/probe/ready', readyProbeRouter);
 app.use('/api', apiRouter);
 
+
 app.use((req, res, next) => {
+    console.log(`Creating 404 on ${req.originalUrl}`)
     next(createError(404));
 });
 
+
 app.use((err, req, res, next) => {
+    console.log("env = " + req.app.get('env'))
     res.locals.message = err.message;
     res.locals.error = req.app.get('env') === 'development' ? err : {};
     res.status(err.status || 500);
     res.render('error');
 });
+
 
 const http = require('http');
 const https = require('https');

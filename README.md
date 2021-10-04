@@ -6,15 +6,15 @@ Run Docker image:  `docker run jecklgamis/expressjs-app-template:latest`
 
 What's In The Box?
 
-* [ExpressJ](https://expressjs.com/) initially generated
+* [ExpressJS](https://expressjs.com/) app initially generated
   from [Express application generator](https://expressjs.com/en/starter/generator.html)
 * Alpine [Docker](https://docker.io) Image
 * HTTP and HTTPS listeners (uses self-signed certs)
 * Example integration tests using [Mocha](https://mochajs.org/) and friends
-* /build-info endpoint (Returns Git branch, version, and build time info)
+* /build-info endpoint (returns Git branch, version, and build time info)
 * /probe/ready, /probe/live endpoints for Kubernetes deployment
-* Statsd metrics
-* [Kubernetes](https://kubernetes.io/) deployment file
+* Statsd metrics (response time, 2xx/3xx/4xx/5xx metrics)
+* Example [Kubernetes](https://kubernetes.io/) deployment file
 
 This is a **Github Template** repo. You can create a copy of this from a clean slate. Simply click <kbd>Use this
 template</kbd> button.
@@ -60,10 +60,6 @@ make run-app-dev-mode
 
 ## Testing
 
-This template uses Mocha test framework along with other libraries (chai, chai-http, and supertest)
-
-Run unit tests:
-
 Run unit tests (all tests under `test/unit`):
 
 ```
@@ -89,11 +85,22 @@ This assumes:
 make deploy-to-k8s
 ```
 
-This target
+This command
 
-* Pushes Docker image Docker Hub
+* Pushes Docker image to Docker Hub
 * Creates `deployment-<version>.yml` in `deployment/k8s`
 * Runs `kubectl apply -f deployment/k8s/deployment-<version>.yml`
+
+## Metrics
+
+All the endpoints are instrumented with timing and status code counters using Statsd.
+
+* <endpoint.name>.duration - timer
+* <endpoint.name>.hits - counter
+* <endpoint.name>.2xx - counter
+* <endpoint.name>.3xx - counter
+* <endpoint.name>.4xx - counter
+* <endpoint.name>.5xx - counter
 
 ## Contributing
 
