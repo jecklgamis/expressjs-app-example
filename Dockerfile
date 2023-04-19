@@ -1,4 +1,4 @@
-FROM node:18-alpine3.17
+FROM node:19-alpine3.16
 MAINTAINER Jerrico Gamis <jecklamis@gmail.com>
 
 RUN apk update && apk add --no-cache bash curl dumb-init

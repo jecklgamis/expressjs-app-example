@@ -35,15 +35,6 @@ clean:
 install-deps:
 	npm install
 	npm install -g nodemon mocha
-push:
-	 docker push $(IMAGE_NAME):$(IMAGE_TAG)
-	 docker push $(IMAGE_NAME):latest
-tag:
-	 git tag -m "expressjs-app-template-v$(IMAGE_TAG)" -a "v$(IMAGE_TAG)"
-	 git push --tags
-deploy-to-k8s: dist image push
-	cd deployment/k8s && ./create-k8s-files.py --version $(IMAGE_TAG)
-	kubectl apply -f deployment/k8s/deployment-$(IMAGE_TAG).yml
-delete-from-k8s:
-	kubectl delete -f deployment/k8s/deployment-$(IMAGE_TAG).yml
+chart:
+	cd deployment/k8s/helm && make package
 
