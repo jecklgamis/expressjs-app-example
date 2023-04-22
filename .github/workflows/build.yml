@@ -12,9 +12,8 @@ jobs:
         with:
           node-version: 16
           cache: 'npm'
-      - name: Log in to Docker Hub
       - name: Run npm clean-install
-      - run: npm ci
+        run: npm ci
       - name: Log in to Docker Hub
         if: ${{ github.event.repository.name == 'express-app-example' && github.event_name != 'pull_request' }}
         uses: docker/login-action@v1
