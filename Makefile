@@ -1,4 +1,4 @@
-IMAGE_NAME:=jecklgamis/expressjs-app-template
+IMAGE_NAME:=jecklgamis/expressjs-app-example
 IMAGE_TAG:=$(shell git rev-parse HEAD)
 
 default:

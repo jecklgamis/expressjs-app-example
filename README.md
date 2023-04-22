@@ -1,8 +1,8 @@
-# expressjs-app-template
+# expressjs-app-example
 
 This is an ExpressJS app template to get you quickly bootstrap an ExpressJS app in Docker.
 
-Run Docker image:  `docker run jecklgamis/expressjs-app-template:latest`
+Run Docker image:  `docker run jecklgamis/expressjs-app-example:latest`
 
 What's In The Box?
 
