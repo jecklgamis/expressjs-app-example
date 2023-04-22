@@ -1,7 +1,7 @@
 {{/*
 Expand the name of the chart.
 */}}
-{{- define "express-app-template.name" -}}
+{{- define "expressjs-app-example.name" -}}
 {{- default .Chart.Name .Values.nameOverride | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
@@ -10,7 +10,7 @@ Create a default fully qualified app name.
 We truncate at 63 chars because some Kubernetes name fields are limited to this (by the DNS naming spec).
 If release name contains chart name it will be used as a full name.
 */}}
-{{- define "express-app-template.fullname" -}}
+{{- define "expressjs-app-example.fullname" -}}
 {{- if .Values.fullnameOverride }}
 {{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}
 {{- else }}
@@ -26,16 +26,16 @@ If release name contains chart name it will be used as a full name.
 {{/*
 Create chart name and version as used by the chart label.
 */}}
-{{- define "express-app-template.chart" -}}
+{{- define "expressjs-app-example.chart" -}}
 {{- printf "%s-%s" .Chart.Name .Chart.Version | replace "+" "_" | trunc 63 | trimSuffix "-" }}
 {{- end }}
 
 {{/*
 Common labels
 */}}
-{{- define "express-app-template.labels" -}}
-helm.sh/chart: {{ include "express-app-template.chart" . }}
-{{ include "express-app-template.selectorLabels" . }}
+{{- define "expressjs-app-example.labels" -}}
+helm.sh/chart: {{ include "expressjs-app-example.chart" . }}
+{{ include "expressjs-app-example.selectorLabels" . }}
 {{- if .Chart.AppVersion }}
 app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 {{- end }}
@@ -45,17 +45,17 @@ app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{/*
 Selector labels
 */}}
-{{- define "express-app-template.selectorLabels" -}}
-app.kubernetes.io/name: {{ include "express-app-template.name" . }}
+{{- define "expressjs-app-example.selectorLabels" -}}
+app.kubernetes.io/name: {{ include "expressjs-app-example.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
 {{/*
 Create the name of the service account to use
 */}}
-{{- define "express-app-template.serviceAccountName" -}}
+{{- define "expressjs-app-example.serviceAccountName" -}}
 {{- if .Values.serviceAccount.create }}
-{{- default (include "express-app-template.fullname" .) .Values.serviceAccount.name }}
+{{- default (include "expressjs-app-example.fullname" .) .Values.serviceAccount.name }}
 {{- else }}
 {{- default "default" .Values.serviceAccount.name }}
 {{- end }}

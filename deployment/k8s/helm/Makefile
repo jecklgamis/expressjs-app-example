@@ -1,4 +1,4 @@
-APP_NAME:=express-app-template
+APP_NAME:=expressjs-app-example
 VERSION:=$(shell cat chart/Chart.yaml | yq .appVersion)
 HELM_CHART=$(APP_NAME)-$(VERSION).tgz
 

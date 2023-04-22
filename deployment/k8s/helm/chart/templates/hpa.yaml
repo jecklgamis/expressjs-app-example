@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "express-app-template.fullname" . }}
+  name: {{ include "expressjs-app-example.fullname" . }}
   labels:
-    {{- include "express-app-template.labels" . | nindent 4 }}
+    {{- include "expressjs-app-example.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "express-app-template.fullname" . }}
+    name: {{ include "expressjs-app-example.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
