@@ -21,7 +21,7 @@ image:
 run:
 	docker run -p 8080:8080 -p 8443:8443 -e "NODE_ENV=production" $(IMAGE_NAME):$(IMAGE_TAG)
 run-app-dev-mode:
-	./run-app-dev-mode.sh
+	DEBUG=express:* nodemon app.js
 run-bash:
 	docker run -i -t $(IMAGE_NAME):$(IMAGE_TAG) /bin/bash
 login:
