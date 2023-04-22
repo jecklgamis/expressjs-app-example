@@ -14,6 +14,10 @@ jobs:
           cache: 'npm'
       - name: Run npm clean-install
         run: npm ci
+      - name: Generate build-info, SSL certs
+        run: |
+          ./generate-build-info.sh
+          ./generate-ssl-certs.sh
       - name: Log in to Docker Hub
         if: ${{ github.event.repository.name == 'express-app-example' && github.event_name != 'pull_request' }}
         uses: docker/login-action@v1
