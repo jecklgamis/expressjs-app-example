@@ -1,8 +1,8 @@
 # expressjs-app-example
 
-This is an ExpressJS app template to get you quickly bootstrap an ExpressJS app in Docker.
+This is an example project to get you quickly bootstrap an ExpressJS app in Docker.
 
-Run Docker image:  `docker run jecklgamis/expressjs-app-example:latest`
+Docker:  `docker run -p 8080:8080 -it  jecklgamis/expressjs-app-example:main`
 
 What's In The Box?
 
@@ -14,10 +14,7 @@ What's In The Box?
 * /build-info endpoint (returns Git branch, version, and build time info)
 * /probe/ready, /probe/live endpoints for Kubernetes deployment
 * Statsd metrics (response time, 2xx/3xx/4xx/5xx metrics)
-* Example [Kubernetes](https://kubernetes.io/) deployment file
-
-This is a **Github Template** repo. You can create a copy of this from a clean slate. Simply click <kbd>Use this
-template</kbd> button.
+* [Kubernetes](https://kubernetes.io/) Helm chart 
 
 Have fun and hope you find this useful!
 
@@ -31,23 +28,12 @@ Most build and run commands are wrapped inside Makefile. Explore this one to see
 invoke of if you like to add one.
 
 ## Building
-
-Install dependencies:
-
 ```
-make install-deps 
-```
-
-Build Docker image:
-
-```
+make install-deps
 make all
 ```
 
 ## Running
-
-Run Docker image:
-
 ```
 make up
 ```
@@ -72,26 +58,6 @@ Run integration tests (all tests under `test/integration`):
 make int-tests
 ```
 
-## Deploying
-
-### Kubernetes
-
-This assumes:
-
-* You have access to a Kubernetes cluster (i.e. a valid $HOME/.kube/config)
-* You have access to Docker Hub
-
-```
-make deploy-to-k8s
-```
-
-This command
-
-* Pushes Docker image to Docker Hub
-* Creates `deployment-<version>.yml` in `deployment/k8s`
-* Runs `kubectl apply -f deployment/k8s/deployment-<version>.yml`
-
-## Metrics
 
 All the endpoints are instrumented with timing and status code counters using Statsd.
 
@@ -103,6 +69,6 @@ All the endpoints are instrumented with timing and status code counters using St
 * <endpoint.name>.5xx - counter
 
 ## Contributing
+Please send an issue or pull request. Thanks.
 
-Found an issue or something needing improvement? Please raise it in Github. Thanks!
 
