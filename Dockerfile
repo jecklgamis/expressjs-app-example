@@ -1,7 +1,7 @@
-FROM node:19-alpine3.16
-MAINTAINER Jerrico Gamis <jecklamis@gmail.com>
+FROM ubuntu:22.04
+MAINTAINER Jerrico Gamis <jecklgamis@gmail.com>
 
-RUN apk update && apk add --no-cache bash curl dumb-init
+RUN apt update -y && apt install -y curl dumb-init nodejs npm && rm -rf /var/lib/apt/lists/*
 
 ENV APP_HOME /app
 
@@ -15,11 +15,11 @@ ADD routes routes
 ADD views views
 ADD middleware middleware
 COPY app.js .
-COPY build_info_data.js .
+COPY build-info-data.js .
 COPY server.crt .
 COPY server.key .
 
-RUN addgroup -S app && adduser -S app -G app
+RUN groupadd -r app && useradd -r -gapp app
 RUN chown -R app:app /app
 
 EXPOSE 8080
