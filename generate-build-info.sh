@@ -3,7 +3,7 @@
 BRANCH=$(git symbolic-ref --short HEAD)
 if [ -z ${GIT_COMMIT} ]; then GIT_COMMIT_ID=$(git rev-parse HEAD); fi
 BUILD_TIME=$(date +"%Y-%m-%dT%H:%M:%S%z")
-BUILD_INFO_FILE=build_info_data.js
+BUILD_INFO_FILE=build-info-data.js
 
 cat <<EOF > ${BUILD_INFO_FILE}
 module.exports = {
