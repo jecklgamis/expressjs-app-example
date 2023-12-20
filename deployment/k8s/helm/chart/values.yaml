@@ -58,7 +58,7 @@ ingress:
   tls:
     - secretName: expressjs-app-example
       hosts:
-        - jecklgamis.com.jecklgamis.com
+        - expressjs-app-example.jecklgamis.com
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
