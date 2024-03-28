@@ -11,7 +11,7 @@
     "debug": "~4.3.4",
     "elasticsearch": "^16.7.2",
     "etcd3": "^1.1.2",
-    "express": "~4.18.2",
+    "express": "~4.19.2",
     "http-errors": "~2.0.0",
     "morgan": "~1.10.0",
     "on-finished": "^2.4.1",
