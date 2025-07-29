@@ -1,5 +1,5 @@
 FROM ubuntu:22.04
-MAINTAINER Jerrico Gamis <jecklgamis@gmail.com>
+LABEL org.opencontainers.image.authors="jecklgamis@gmail.com"
 
 RUN apt update -y && apt install -y curl dumb-init nodejs npm && rm -rf /var/lib/apt/lists/*
 
