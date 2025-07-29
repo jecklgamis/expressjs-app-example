@@ -1,5 +1,5 @@
-IMAGE_NAME:=jecklgamis/expressjs-app-example
-IMAGE_TAG:=latest
+IMAGE_NAME:=expressjs-app-example
+IMAGE_TAG:=main
 
 default:
 	@echo "Makefile targets:"
@@ -33,6 +33,10 @@ clean:
 install-deps:
 	npm install
 	npm install -g nodemon mocha
+upgrade-deps:
+	npm i -g npm-check-updates
+	ncu -u
+	npm install
 chart:
 	cd deployment/k8s/helm && make package
 
