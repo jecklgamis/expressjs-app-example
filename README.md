@@ -1,5 +1,7 @@
 # expressjs-app-example
 
+[![Build](https://github.com/jecklgamis/expressjs-app-example/actions/workflows/build.yml/badge.svg)](https://github.com/jecklgamis/expressjs-app-example/actions/workflows/build.yml)
+
 This is an example project to get you quickly bootstrap an ExpressJS app in Docker.
 
 Docker:  `docker run -p 8080:8080 -it  jecklgamis/expressjs-app-example:main`
