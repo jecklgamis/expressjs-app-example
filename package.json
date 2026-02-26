@@ -19,6 +19,9 @@
     "pug": "^3.0.3",
     "statsd-client": "^0.4.7"
   },
+  "overrides": {
+    "diff": "^8.0.3"
+  },
   "devDependencies": {
     "chai": "^5.2.1",
     "chai-http": "^5.1.2",
