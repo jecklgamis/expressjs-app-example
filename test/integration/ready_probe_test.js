@@ -1,14 +1,14 @@
 import * as chai from 'chai';
-import {default as chaiHttp} from "chai-http";
+import {default as chaiHttp, request} from "chai-http";
+import app from '../../app.js';
 
 const {expect} = chai;
 
 chai.use(chaiHttp);
-const app = require('../../app');
 
 describe('GET /probe/ready', () => {
     it('should return status 200 and an object', (done) => {
-        chai.request(app)
+        request.execute(app)
             .get('/probe/ready')
             .end((err, res) => {
                 if (err) return done(err);

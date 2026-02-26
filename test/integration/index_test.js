@@ -4,7 +4,7 @@ const {expect} = chai;
 import {default as chaiHttp, request} from "chai-http";
 
 chai.use(chaiHttp);
-const app = require('../../app');
+import app from '../../app.js';
 
 describe('GET /', () => {
     it('should return status 200 and an object', function (done) {
