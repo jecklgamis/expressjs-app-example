@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node app.js",
-    "test": "mocha --exit"
+    "test": "mocha --exit test/unit test/integration"
   },
   "dependencies": {
     "cookie-parser": "~1.4.7",
