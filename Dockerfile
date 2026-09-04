@@ -1,15 +1,15 @@
-FROM ubuntu:22.04
+FROM node:22-bookworm-slim
 LABEL org.opencontainers.image.authors="jecklgamis@gmail.com"
 
-RUN apt update -y && apt install -y curl dumb-init nodejs npm && rm -rf /var/lib/apt/lists/*
+RUN apt update -y && apt install -y curl dumb-init && rm -rf /var/lib/apt/lists/*
 
-ENV APP_HOME /app
+ENV APP_HOME=/app
 
 RUN mkdir -p ${APP_HOME}
 WORKDIR /app
 COPY "package.json" .
 COPY "package-lock.json" .
-RUN npm install -production
+RUN npm install --omit=dev
 ADD public public
 ADD routes routes
 ADD views views
